@@ -4,8 +4,6 @@
 
 package com.mycompany.quickchat;
 
-import java.util.Scanner;
-
 /**
  *
  * @author Student
@@ -13,8 +11,8 @@ import java.util.Scanner;
 public class Login {
     private String storedUsername;
     private String storedPassword;
-    private String storedPhone;
-
+    private String storedPhoneNumber;
+    
     // 1. Check Username
     public boolean checkUserName(String username) {
         return username.contains("_") && username.length() <= 5;
@@ -30,10 +28,12 @@ public class Login {
         return length && uppercase && number && specialChar;
     }
 
-    // 3. Check Cell Phone Number (Regex)
-    public boolean checkCellPhoneNumber(String phoneNumber) {
-        // Regex: +countryCode followed by up to 10 digits
-        return phoneNumber.matches("^\\+\\d{1,3}\\d{10}$");
+    // 3. Check PhoneNumber (Regex)
+    public boolean checkPhoneNumber(String phonenumber) {
+        // Regex: + followed by 1–3 digit country code and exactly 10 digits
+        String regex = "^\\+\\d{1,3}\\d{10}$";
+    return phonenumber.matches(regex);
+       
     }
 
     // 4. Register User
@@ -44,13 +44,13 @@ public class Login {
         if (!checkPasswordComplexity(password)) {
             return "Password is not correctly formatted; please ensure that the password contains at least eight characters, a capital letter, a number, and a special character.";
         }
-        if (!checkCellPhoneNumber(phoneNumber)) {
-            return "Cell phone number incorrectly formatted or does not contain international code.";
+        if (!checkPhoneNumber(phoneNumber)) {
+            return "Phone number incorrectly formatted or does not contain international code.";
         }
 
         this.storedUsername = username;
         this.storedPassword = password;
-        this.storedPhone = phoneNumber;
+        this.storedPhoneNumber = phoneNumber;
 
         return "User registered successfully";
     }
