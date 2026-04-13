@@ -23,7 +23,7 @@ public class Main {
         System.out.print("Enter password: ");
         String password = scanner.nextLine();
 
-        System.out.print("Enter cell phone number (with country code, e.g. +27...): ");
+        System.out.print("Enter phone number (with country code, e.g. +27...): ");
         String phoneNumber = scanner.nextLine();
 
         String registrationMessage = loginSystem.registerUser(username, password, phoneNumber);
